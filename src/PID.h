@@ -15,6 +15,13 @@ public:
   double d_error;
 	double pre_error;
 
+	int d_bufer_size_;
+	double *d_buffer;
+	double d_sum;
+	int d_idx;
+
+	bool isFirstUpdate = true;
+
   /*
   * Coefficients
   */ 
@@ -36,7 +43,7 @@ public:
   /*
   * Initialize PID.
   */
-  void Init(double Kp, double Ki, double Kd);
+	void Init(double Kp, double Ki, double Kd, int d_buf_size);
 
   /*
   * Update the PID error variables given cross track error.

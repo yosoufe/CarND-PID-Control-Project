@@ -2,6 +2,7 @@ reset
 set size 1,1
 
 set key left bottom
+set grid
 
 set multiplot
 

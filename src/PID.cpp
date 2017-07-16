@@ -20,20 +20,40 @@ PID::PID() {
 
 PID::~PID() {}
 
-void PID::Init(double Kp, double Ki, double Kd) {
+void PID::Init(double Kp, double Ki, double Kd,int d_buf_size) {
 	this->Kp = Kp;
 	this->Ki = Ki;
 	this->Kd = Kd;
 	p_error = 0;
 	i_error = 0;
 	d_error = 0;
-	pre_error = 0;
+	pre_error = -0.7598;
+
+	d_bufer_size_ = d_buf_size;
+	d_buffer = new double[d_bufer_size_];
+	d_sum = 0;
+	d_idx = 0;
 }
 
 void PID::UpdateError(double error) {
 	p_error = error;
 	i_error += error;
 	d_error = error - pre_error;
+
+	if (isFirstUpdate){
+		d_error = 0;
+		isFirstUpdate = false;
+	}
+
+	d_sum -= d_buffer[d_idx];
+	d_buffer[d_idx]=d_error;
+	d_sum += d_buffer[d_idx];
+
+	d_error = d_sum/d_bufer_size_;
+	d_idx++;
+	if (d_idx>= d_bufer_size_)
+		d_idx = 0;
+
 	pre_error = error;
 
 }

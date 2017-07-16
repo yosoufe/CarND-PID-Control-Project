@@ -36,10 +36,10 @@ int main()
 	PID pid_speed;
 	// Initialize the pid variable.
 	double ku = 0.06; //0.05
-	double kp = 1.9 * ku; //1.5
-	double ki = ku / (1000.);
-	double kd = ku * (100/8.);//80
-	pid_steer.Init(kp,ki,kd);
+	double kp = 2.9 * ku; //1.9
+	double ki = ku / (100.);//1000
+	double kd = ku * (200./8.);//80
+	pid_steer.Init(kp,ki,kd,1);
 	//pid_speed.Init(0.8,0.009,1);
 
 	h.onMessage([&pid_steer,&pid_speed](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode) {
