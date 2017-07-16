@@ -35,10 +35,10 @@ int main()
 	PID pid_steer;
 	PID pid_speed;
 	// Initialize the pid variable.
-	double ku = 0.06; //0.05
-	double kp = 2.9 * ku; //1.9
-	double ki = ku / (100.);//1000
-	double kd = ku * (200./8.);//80
+	double ku = 0.06; //0.06
+	double kp = 2.9 * ku; //2.9
+	double ki = ku / (100.);//100
+	double kd = ku * (200./8.);//180
 	pid_steer.Init(kp,ki,kd,1);
 	//pid_speed.Init(0.8,0.009,1);
 
