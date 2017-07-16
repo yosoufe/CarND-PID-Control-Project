@@ -7,6 +7,7 @@ using namespace std;
 */
 
 PID::PID() {
+#ifdef WITH_GNUPLOT
 	error_file = std::fopen("error","w");
 	std::fclose(error_file);
 
@@ -14,6 +15,7 @@ PID::PID() {
 	std::fclose(control_terms_file);
 
 	gp_ = popen("gnuplot -persist" , "w");
+#endif
 }
 
 PID::~PID() {}
@@ -38,10 +40,13 @@ void PID::UpdateError(double error) {
 
 double PID::getControlCommand() {
 	control = Kp * p_error + Ki * i_error + Kd * d_error;
+#ifdef WITH_GNUPLOT
 	updateGraphFromFile();
+#endif
 	return control;
 }
 
+#ifdef WITH_GNUPLOT
 void PID::updateGraphFromFile(){
 	error_file = std::fopen("error","a");
 	if(error_file != NULL){
@@ -65,3 +70,4 @@ void PID::updateGraphFromFile(){
 		std::fflush(gp_);
 	}
 }
+#endif

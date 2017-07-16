@@ -48,10 +48,12 @@ public:
   */
 	double getControlCommand();
 private:
+#ifdef WITH_GNUPLOT
 	FILE *error_file;
 	FILE *control_terms_file;
 	FILE *gp_;
 	void updateGraphFromFile();
+#endif
 };
 
 #endif /* PID_H */

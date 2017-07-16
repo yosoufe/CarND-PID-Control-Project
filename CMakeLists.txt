@@ -20,6 +20,11 @@ link_directories(/usr/local/Cellar/libuv/1.11.0/lib)
 
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin") 
 
+OPTION(WITH_GNUPLOT "Having Plotting feature (gnuplot is required)" off)
+
+if(WITH_GNUPLOT)
+	ADD_DEFINITIONS(-DWITH_GNUPLOT)
+endif(WITH_GNUPLOT)
 
 add_executable(pid ${sources})
 
