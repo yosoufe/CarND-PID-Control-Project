@@ -16,16 +16,19 @@ The controller has three parts and three kind of behavior:
 1. Proportional Action: This part is responsible of the current value of error. Which is a constant multipied by the current value of error. The proportional constant should be chosen wisely because:
 
    if it is too low: The controller would be to slow until it reaches the reference and in sharp turns, the car would understeer.
+   
    If it is too high: It will generate a lot of overshoot and oscilations and may also cause unstability in system.
 
 2. Integral Action: This part compensate long term error and looking to past of the system. It symply adds up all the errors and multiply it by a constant. If there is something wrong with steering sysstem for example which for example zero degree of steering will would not cause the zero degree on tyres, the integral action would solve such issues.
 
    If it is too high: would cause a lot of oscilations and overshooting.
+   
    If it is too low: system with a lot of uncertainity would have big steady state error.
 
 3. Derivative Action: This part would damps the oscilations in the system. The Derivative action is looking into the future by calculating the difference of the two last errors. Therefore it can anticipate that we are reaching to the refernce and decreases the control command.
 
    If it is too low: The oscilations caused by proportional or integral actions would not be dampes and the system would be oscilatory.
+   
    If it is too high: The derivation of the error is very sensitive to noises and if the term is too big, during the noisy the system would have jerky behaviour. For example in plot below you can see that there are a lot of jerk and sudden commands in the graph. Yellow line is showing the derivative term. Another probelm with too high derivative is again overshooting and unstability possibilities.
 
 ![alt text][image2]
