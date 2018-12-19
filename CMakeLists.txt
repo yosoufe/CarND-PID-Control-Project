@@ -1,4 +1,4 @@
-project(PID)
+project(myPID)
 
 cmake_minimum_required (VERSION 3.5)
 
